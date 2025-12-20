@@ -12,17 +12,21 @@ function getViewportWidth() {
 // Duplicate spans to fill at least 2 screen widths
 function fillRepeats() {
   // Remove any duplicates from previous runs, keep only the first 4
-  while(tickerTrack.children.length > 4) {
+  while (tickerTrack.children.length > 4) {
     tickerTrack.removeChild(tickerTrack.lastChild);
   }
+
+  // IMPORTANT: Temporarily set width to 'auto' & transform to none for measurement
+  tickerTrack.style.width = 'auto';
+  tickerTrack.style.transform = 'none'; // This is key for measurement (solves mobile jump)
 
   // Calculate width of the tickerTrack if it only has one set of spans
   let singleSetWidth = tickerTrack.scrollWidth;
 
-  // Find how many sets are needed to exceed 2x viewport width
-  const targetWidth = getViewportWidth() * 100;
-  let setsNeeded = Math.ceil(targetWidth / singleSetWidth);
+  // Find how many sets are needed to exceed 2x viewport width (use 2 instead of 100!)
+  const targetWidth = getViewportWidth() * 2;
 
+  let setsNeeded = Math.ceil(targetWidth / singleSetWidth);
   if (setsNeeded < 2) setsNeeded = 2; // Always at least 2 to avoid short loops
 
   // Fill tickerTrack with repeated spans
@@ -33,26 +37,27 @@ function fillRepeats() {
     });
   }
 
-  // Set tickerTrack width, unset in case previously set
-  tickerTrack.style.width = 'auto';
+  // Recalculate with all repeats
+  tickerTrack.style.width = 'auto'; // unset for new measurement
+  tickerTrack.style.transform = 'none';
+  let totalWidth = tickerTrack.scrollWidth;
 
-  // Impose the exact pixel width
-  tickerTrack.style.width = tickerTrack.scrollWidth + 'px';
+  // Set explicit width (prevents "jump" on mobile from scrollWidth changing)
+  tickerTrack.style.width = totalWidth + 'px';
 
-  return tickerTrack.scrollWidth;
+  return totalWidth;
 }
 
 // Set up and run the animation
 let animationFrame;
-let animationTime = 0;
 let trackWidth = 0;
+let animationStart = null;
 const SCROLL_PIXELS_PER_SECOND = 50;
 
-function animateTicker(time) {
-  // Calculate elapsed time (in seconds)
-  if (!animationTime) animationTime = time;
-  let elapsed = (time - animationTime) / 1000;
-  // Move ticker left by this many pixels
+// Use RAF time as clean base for all platforms
+function animateTicker(timestamp) {
+  if (!animationStart) animationStart = timestamp;
+  let elapsed = (timestamp - animationStart) / 1000;
   let pxOffset = (elapsed * SCROLL_PIXELS_PER_SECOND) % trackWidth;
   tickerTrack.style.transform = `translateX(${-pxOffset}px)`;
   animationFrame = requestAnimationFrame(animateTicker);
@@ -60,19 +65,22 @@ function animateTicker(time) {
 
 // Initialize everything
 function startTicker() {
-  // Prepare .ticker__track contents
-  trackWidth = fillRepeats();
-  // Reset transforms
-  tickerTrack.style.transform = 'translateX(0)';
-  // Cancel previous frame
+  // Cancel previous frame in case
   if (animationFrame) cancelAnimationFrame(animationFrame);
-  animationTime = 0;
+
+  // Prepare .ticker__track contents, always reset transform before measuring!
+  tickerTrack.style.transform = 'none';
+  trackWidth = fillRepeats();
+
+  // Reset transforms and animation timing
+  tickerTrack.style.transform = 'translateX(0)';
+  animationStart = null;
   animationFrame = requestAnimationFrame(animateTicker);
 }
 
 // Re-init when window resizes (throttled)
 let resizeTimeout;
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(startTicker, 200);
 });
