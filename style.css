@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;350;400;700&display=swap');
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 html {
     /* Prevent unwanted scaling/zoom-out on mobile */
