@@ -472,20 +472,24 @@ main {
     border-radius: 18px;
 }
 
+/* Desktop: On hover/active, overlay appears */
 .meme-image:hover::after,
 .meme-image.active::after {
     opacity: 1;
 }
-
-/* Hide the original img underneath when hover or active (to show full overlay) */
 .meme-image:hover img,
 .meme-image.active img {
     opacity: 0;
 }
 
-/* Mobile: show image overlay on tap (active state set via JS) */
+/* On mobile, always show overlay image, always hide <img> */
 @media (hover: none) and (pointer: coarse) {
-    /* Hover will not apply, only .active controlled by JS */
+    .meme-image::after {
+        opacity: 1 !important;
+    }
+    .meme-image img {
+        opacity: 0 !important;
+    }
 }
 
 .container-with-button {

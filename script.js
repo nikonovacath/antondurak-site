@@ -163,31 +163,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Make meme-image show overlay on tap (mobile) ---
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Only for touch devices (no hover)
-  const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-  if (!isTouchDevice) return;
-
-  const memeImage = document.querySelector('.meme-image');
-  if (!memeImage) return;
-
-  memeImage.addEventListener('click', function(e) {
-    // If already active, remove so double tap returns to normal
-    if (memeImage.classList.contains('active')) {
-      memeImage.classList.remove('active');
-    } else {
-      memeImage.classList.add('active');
-    }
-  });
-
-  // Optionally, clicking/touching anywhere else removes overlay
-  document.addEventListener('click', function(e) {
-    // If not the meme image, remove active
-    if (!memeImage.contains(e.target)) {
-      memeImage.classList.remove('active');
-    }
-  });
-});
 
