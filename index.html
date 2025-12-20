@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="style.css">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Website</title>
+</head>
+<body>
+    <header>
+        <img src="logo.svg" alt="Website Logo">
+    </header>
+    <div class="ticker">
+        <div class="ticker__track" id="tickerTrack">
+            <span>А АРСЕНИЙ — КОЗЕЛ</span>
+            <span>🩵</span>
+            <span>А АРСЕНИЙ — КОЗЕЛ</span>
+            <span>💚</span>
+        </div>
+      </div>
+    <main>
+        <div class="block-1">  
+            <div class="text-container">
+                <h2>Че за хрень?</h2>
+                <p>Сам не знаю. Но меня тогда так разозлил твой обман с этой ссылкой, что я решил, что нужно точно что-то предпринять. И вот. Считай это моим подарком, на который я потратил точно меньше пяти тысяч.</p>
+            </div>
+            <div class="text-container">
+                <h2>Ты дебил?</h2>
+                <p>Да.</p>
+            </div>
+            <div class="text-container">
+                <h2>И че дальше?</h2>
+                <p>Ничего. Соси жопу. 
+                    Шучу. 
+                    Можешь потыкать тут на всякое. Я дурачился, чтобы ты ворчал, закатывал глаза, но улыбался. <br> 
+                    И это. <br>
+                    С Новым годом. </p>
+            </div>
+        </div>
+        <div class="articles">
+            <h2>Научные статьи by Shastoon A.</h2>
+            <div class="article-list">
+                <a class="article" href="javascript:void(0)" onclick="openPopup('popup1')"><span>Чем торфянники отличаются от болот?</span></a>
+                <a class="article" href="javascript:void(0)" onclick="openPopup('popup2')"><span>Почему Арсений лучше всех?</span></a>
+                <a class="article" href="javascript:void(0)" onclick="openPopup('popup3')"><span>Почему лисы рыжие?</span></a>
+                <a class="article" href="javascript:void(0)" onclick="openPopup('popup4')"><span>Почему Антон дурак?</span></a>
+            </div>
+
+            <!-- Popup 1 -->
+            <div id="popup1" class="popup-overlay">
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <h2>Чем торфянники отличаются от болот?</h2>
+                        <a href="javascript:void(0)" onclick="closePopup('popup1')">
+                            <img src="close-icon.svg" alt="Закрыть" />
+                        </a>
+                    </div>
+                    <p>Торфянники — это болота, где происходит активное накопление торфа, то есть разлагающихся остатков растений. Обычные болота могут не накапливать столько торфа. Торфянники часто более кислые и содержат меньше питательных веществ.</p>
+                </div>
+            </div>
+
+            <!-- Popup 2 -->
+            <div id="popup2" class="popup-overlay">
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <h2>Почему Арсений лучше всех?</h2>
+                        <a href="javascript:void(0)" onclick="closePopup('popup2')">
+                            <img src="close-icon.svg" alt="Закрыть" />
+                        </a>
+                    </div>
+                    <p>Потому что у него идеальное сочетание остроумия, харизмы, ума и капельки загадки. А главное — он пишет крутые сайты специально для тебя.</p>
+                </div>
+            </div>
+
+            <!-- Popup 3 -->
+            <div id="popup3" class="popup-overlay">
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <h2>Почему лисы рыжие?</h2>
+                        <a href="javascript:void(0)" onclick="closePopup('popup3')">
+                            <img src="close-icon.svg" alt="Закрыть" />
+                        </a>
+                    </div>
+                    <p>Рыжий цвет лисы — это результат эволюции и адаптации. Помогает им маскироваться и выживать в лесу и на открытых местностях. А ещё это очень красиво!</p>
+                </div>
+            </div>
+
+            <!-- Popup 4 -->
+            <div id="popup4" class="popup-overlay">
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <h2>Почему Антон дурак?</h2>
+                        <a href="javascript:void(0)" onclick="closePopup('popup4')">
+                            <img src="close-icon.svg" alt="Закрыть" />
+                        </a>
+                    </div>
+                    <p>Антон не дурак, просто у него своё уникальное видение мира 😘.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="color-change">
+            <div class="text-container">
+                <h2>Арсений! </h2>
+                <p>Твои родители случайно не художники? <br> Тогда откуда у них такое произведение искусства?</p>
+            </div>
+            <div class="theme-toggle">
+                <label class="toggle-option active">
+                    <input type="radio" name="theme" value="blue" checked>
+                    <span>Синий</span>
+                </label>
+                <label class="toggle-option">
+                    <input type="radio" name="theme" value="green">
+                    <span>Зелёный</span>
+                </label>
+            </div>            
+        </div>
+        <div class="meme">
+            <h2>Отборный материал юмористического характера:</h2>
+            <div class="meme-list">
+                <a class="meme-link" href="https://ru.wikipedia.org/wiki/Торфяник" target="_blank">
+                    <span>Чем торфянники отличаются от болот?</span>
+                    <span class="meme-tag">#биология</span>
+                </a>
+                <a class="meme-link" href="https://example.com/arseniy-best" target="_blank">
+                    <span>Почему Арсений лучше всех?</span>
+                    <span class="meme-tag">#арсений</span>
+                </a>
+                <a class="meme-link" href="https://ru.wikipedia.org/wiki/Лиса" target="_blank">
+                    <span>Почему лисы рыжие?</span>
+                    <span class="meme-tag">животные</span>
+                </a>
+                <div class="meme-image">
+                    <span></span>
+                </div>
+                <a class="meme-link" href="https://ru.wikipedia.org/wiki/Торфяник" target="_blank">
+                    <span>Чем торфянники отличаются от болот?</span>
+                    <span class="meme-tag">#биология</span>
+                </a>
+                <a class="meme-link" href="https://example.com/arseniy-best" target="_blank">
+                    <span>Почему Арсений лучше всех?</span>
+                    <span class="meme-tag">#арсений</span>
+                </a>
+                <a class="meme-link" href="https://ru.wikipedia.org/wiki/Лиса" target="_blank">
+                    <span>Почему лисы рыжие?</span>
+                    <span class="meme-tag">животные</span>
+                </a>
+            </div>
+        </div>
+        <div class="container-with-button">
+            <img src="game-img.svg" alt="Картинка для игры" style="width:64px;height:64px;display:block;margin-bottom:0px;">
+            <div class="text-container">
+                <h2>А вот тут я сииииииииильнооооооо дурачился!</h2>
+                <p>И приглашаю тебя подурачиться со мной.<br> 
+                    Тебе понадобится минут 5-10 свободного времени и иммунитет от коржа. То есть от кринжа.<br>  
+                    Удачи. И не бойся ошибаться.  😉</p>
+            </div>
+            <a class="action-button" href="https://www.figma.com/proto/KdjUsUTvCTSoN5sdhWsDwD/Untitled?page-id=292%3A55&node-id=292-56&viewport=324%2C218%2C0.17&t=BKetI2oH07jwxFCq-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=292%3A56" target="_blank" rel="noopener">
+                <span>Сыграть в игру</span>
+                <img src="arrow.svg" alt="Стрелка" style="width:20px;height:20px;">
+            </a>
+        </div>
+    <div class="playlists">
+        <div class="text-container">
+            <h2>Арсений!</h2>
+            <p>Если б ты был морем-водкой, я бы стал подводной лодкой. <br>
+                Музыкальная пауза. </p>
+        </div>
+        <div class="article-list">
+            <a class="article" href="https://ru.wikipedia.org/wiki/Мох" target="_blank">
+                Плейлист "Новогодний"
+            </a>
+            <a class="article" href="https://ru.wikipedia.org/wiki/Экология" target="_blank">
+                Плейлист "Любовный"
+            </a>
+        </div>
+    </div>
+    <div class="final">
+        <div class="text-container">
+            <h2>В целом это всё!</h2>
+            <p>Спасибо, что потыкал. И вообще. Ну. Спасибо. <br>
+                И это. <br>
+                С Новым годом, Арс. 
+
+            </p>
+        </div>
+    </div>
+    <div class="final">
+        <div class="final-text">
+                Создано твоим (экс) пацаном, который считается самым счастливым человеком в 
+                мире, потому что самый лучший мальчик в мире сейчас читает его вот это дерьмо. 
+        </div>
+    </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

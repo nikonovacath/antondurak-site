@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;350;400;700&display=swap');
+
+:root {
+    --color-white: #F8F3EF;
+    --blue: #6C90E4;
+    --green: #78A283;
+    --main: var(--blue); /* Set main to blue by default */
+
+    /* Font variables */
+    --font-l: 'Unbounded', sans-serif;
+    --font-l-size: 22px;
+    --font-l-line-height: 28px;
+
+    --font-m: 'Unbounded', sans-serif;
+    --font-m-size: 16px;
+    --font-m-line-height: 24px;
+
+    --font-s: 'Unbounded', sans-serif;
+    --font-s-size: 14px;
+    --font-s-line-height: 21px;
+
+    --font-xs: 'Unbounded', sans-serif;
+    --font-xs-size: 13px;
+    --font-xs-line-height: 19px;
+}
+body {
+    background-color: var(--color-white);
+}
+header {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 620px) {
+    header {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        max-width: none;
+    }
+    main {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+header img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.ticker {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background-color: var(--main);
+    padding: 8px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.ticker__track {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    white-space: nowrap;
+}
+
+.ticker__track span {
+    color: var(--color-white);
+    font-family: var(--font-xs);
+    font-size: var(--font-xs-size);
+    line-height: var(--font-xs-line-height);
+}
+
+main {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    color: var(--main);
+    font-family: var(--font-l);
+    font-size: var(--font-l-size);
+    line-height: var(--font-l-line-height);
+    font-weight: 350;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p {
+    font-family: var(--font-xs);
+    font-size: var(--font-xs-size);
+    line-height: var(--font-xs-line-height);
+    font-weight: 350;
+    color: var(--main);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.block-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 50px;
+}
+main {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+}
+
+.articles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.article {
+    display: block;
+    padding: 16px 24px;
+    border: 1px solid var(--main);
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+    color: var(--main);
+    font-weight: 350;
+    background: transparent; /* Optional: make background explicit */
+    box-sizing: border-box;
+    border-radius: 18px;
+    text-decoration: none; /* Added to remove underline from links */
+}
+
+.article:hover {
+    background: var(--main);
+    color: var(--color-white);
+}
+#popup1, #popup2, #popup3, #popup4 {
+    display: none; /* Скрываем по умолчанию */
+    position: fixed; /* чтобы они появлялись поверх контента */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center; /* если используешь flex */
+    align-items: center;
+    background: rgba(0,0,0,0.5); /* полупрозрачный фон */
+}
+
+.popup-content {
+    max-width: 400px;
+    width: 90%;
+    background: var(--color-white, #fff);
+    border-radius: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 16px; /* For small screens, prevent touch edges */
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.popup-header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-header a:hover img {
+    opacity: 0.5;
+}
+
+.popup-header img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    transition: opacity 0.2s;
+}
+.color-change {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 16px; /* Prevent touching screen edges on small devices */
+}
+
+.theme-toggle {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.toggle-option {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 18px;
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+    font-weight: 350;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    gap: 8px;
+    user-select: none;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--main); /* fallback */
+    /* color set below per color */
+}
+
+@media (max-width: 400px) {
+    .theme-toggle {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .toggle-option {
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+/* Синий (blue) toggle when inactive */
+.theme-toggle .toggle-option:first-child:not(.active) {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+/* Зелёный (green) toggle when inactive */
+.theme-toggle .toggle-option:last-child:not(.active) {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+/* Active toggle: always use main color, white text */
+.toggle-option.active {
+    background: var(--main);
+    color: var(--color-white);
+}
+
+.toggle-option input[type="radio"] {
+    accent-color: var(--main);
+    margin-right: 8px;
+}
+
+.toggle-option span {
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+}
+
+.toggle-option input[type="radio"] {
+    /* Hide the native radio appearance but preserve accessibility */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--main);
+    border-radius: 50%;
+    background: var(--color-white);
+    box-sizing: border-box;
+    margin: 0 8px 0 0;
+    position: relative;
+    vertical-align: middle;
+    transition: border-color 0.2s;
+    display: inline-block;
+}
+
+/* Синий radiobutton (первый) -- border is blue when inactive */
+.theme-toggle .toggle-option:first-child:not(.active) input[type="radio"] {
+    border-color: var(--blue);
+}
+
+/* Зелёный radiobutton (второй) -- border is green when inactive */
+.theme-toggle .toggle-option:last-child:not(.active) input[type="radio"] {
+    border-color: var(--green);
+}
+
+/* Active radio button: border is main color */
+.toggle-option.active input[type="radio"],
+.toggle-option input[type="radio"]:checked {
+    border-color: var(--main);
+}
+
+.toggle-option input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--main);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle-option input[type="radio"]:focus {
+    box-shadow: 0 0 0 2px rgba(120, 162, 131, 0.25); /* example: focus ring, can be customized */
+}
+
+
+.meme {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.meme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.meme-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 16px 24px;
+    border: 1px solid var(--main);
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+    color: var(--main);
+    font-weight: 350;
+    background: transparent;
+    box-sizing: border-box;
+    border-radius: 18px;
+    text-decoration: none;
+}
+.meme-link:hover {
+    background: var(--main);
+    color: var(--color-white);
+}
+.meme-tag {
+    padding: 2px 10px 3px 10px;
+    background: var(--main);
+    color: var(--color-white);
+    font-size: var(--font-xs-size);
+    font-weight: 350;
+    border-radius: 99px;
+    display: inline-block;
+}
+
+.meme-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border: 1px solid var(--main);
+    background: var(--main);
+    box-sizing: border-box;
+    border-radius: 18px;
+    height: 62px;
+    width: auto; /* allow width to adapt */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.meme-image img {
+    height: 100%;
+    width: auto;
+    display: block;
+    border-radius: 12px; /* optional*/
+    transition: opacity 0.2s;
+    position: relative;
+    z-index: 1;
+}
+
+/* The hover image that fills the container */
+.meme-image::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: url('alik.png') center center / cover no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 2;
+    border-radius: 18px;
+}
+
+.meme-image:hover::after,
+.meme-image.active::after {
+    opacity: 1;
+}
+
+/* Hide the original img underneath when hover or active (to show full overlay) */
+.meme-image:hover img,
+.meme-image.active img {
+    opacity: 0;
+}
+
+/* Mobile: show image overlay on tap (active state set via JS) */
+@media (hover: none) and (pointer: coarse) {
+    /* Hover will not apply, only .active controlled by JS */
+}
+
+.container-with-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--main);
+    padding: 24px 32px;
+    border-radius: 18px;
+    box-sizing: border-box;
+    margin: 0 0 0 0; /* Reset any unwanted browser margin */
+}
+
+/* Make text-container's text inside .container-with-button white */
+.container-with-button .text-container h2,
+.container-with-button .text-container p {
+    color: var(--color-white);
+}
+
+@media (max-width: 620px) {
+    .container-with-button {
+        padding: 24px 32px;
+        border-radius: 14px;
+        /* if outer padding applies through a parent, simulate same as .articles or .meme with margin */
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--color-white);
+    color: var(--main);
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+    font-weight: 350;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    padding: 12px 28px;
+    transition: background 0.18s, color 0.18s;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.action-button span {
+    color: var(--main);
+    font-family: var(--font-m);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+    font-weight: 350;
+    text-decoration: none; /* Remove underline from the label */
+}
+
+.action-button img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.action-button:active,
+.action-button:focus {
+    outline: none;
+    /* Optionally: subtle highlight */
+    background: #ece4db;
+}
+
+.playlists {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.final {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.final-text {
+    color: var(--main);
+    opacity: 0.5;
+    font-family: var(--font-xs);
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: 350;
+}
+
+
