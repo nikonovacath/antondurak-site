@@ -106,8 +106,8 @@ header img {
 .ticker__track span {
     color: var(--color-white);
     font-family: var(--font-xs);
-    font-size: var(--font-xs-size);
-    line-height: var(--font-xs-line-height);
+    font-size: 11px;
+    line-height: 13px
 }
 
 main {
@@ -149,7 +149,7 @@ p {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 main {
     max-width: 620px;
@@ -498,7 +498,7 @@ main {
     flex-direction: column;
     gap: 16px;
     background: var(--main);
-    padding: 24px 32px;
+    padding: 32px 32px;
     border-radius: 18px;
     box-sizing: border-box;
     margin: 0 0 0 0; /* Reset any unwanted browser margin */
@@ -512,7 +512,7 @@ main {
 
 @media (max-width: 620px) {
     .container-with-button {
-        padding: 24px 32px;
+        padding: 32px 32px;
         border-radius: 14px;
         /* if outer padding applies through a parent, simulate same as .articles or .meme with margin */
         margin-left: 8px;
@@ -553,6 +553,11 @@ main {
     vertical-align: middle;
 }
 
+/* Add 80% opacity on hover */
+.action-button:hover {
+    opacity: 0.8;
+}
+
 .action-button:active,
 .action-button:focus {
     outline: none;
@@ -567,6 +572,7 @@ main {
     gap: 16px;
 }
 
+
 .final {
     width: 100%;
     display: flex;
@@ -580,6 +586,7 @@ main {
     font-size: 11px;
     line-height: 15px;
     font-weight: 350;
+    padding-bottom: 12px;
 }
 
 
