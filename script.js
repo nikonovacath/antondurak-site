@@ -24,7 +24,7 @@ function fillRepeats() {
   let singleSetWidth = tickerTrack.scrollWidth;
 
   // Find how many sets are needed to exceed 2x viewport width (use 2 instead of 100!)
-  const targetWidth = getViewportWidth() * 2;
+  const targetWidth = getViewportWidth() * 100;
 
   let setsNeeded = Math.ceil(targetWidth / singleSetWidth);
   if (setsNeeded < 2) setsNeeded = 2; // Always at least 2 to avoid short loops
@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.popup-header img[alt="Закрыть"]').forEach(function(closeIcon) {
         closeIcon.src = "close-icon-green.svg";
       });
-      // Change all arrow icons in buttons to green version
-      document.querySelectorAll('button.action-button img[alt="Стрелка"]').forEach(function(arrowImg) {
+      // Change all arrow icons in action buttons (fix selector for <a> and <button>)
+      document.querySelectorAll('.action-button img[alt="Стрелка"]').forEach(function(arrowImg) {
         arrowImg.src = "arrow-green.svg";
       });
     } else if (theme === "blue") {
