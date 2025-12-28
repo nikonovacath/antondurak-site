@@ -135,8 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.popup-header img[alt="Закрыть"]').forEach(function(closeIcon) {
         closeIcon.src = "close-icon.svg";
       });
-      // Restore all arrow icons in buttons to blue version
-      document.querySelectorAll('button.action-button img[alt="Стрелка"]').forEach(function(arrowImg) {
+      // Restore all arrow icons in action buttons (<button> and <a>) to blue version
+      document.querySelectorAll('.action-button img[alt="Стрелка"]').forEach(function(arrowImg) {
         arrowImg.src = "arrow.svg";
       });
     }
@@ -162,5 +162,4 @@ document.addEventListener('DOMContentLoaded', function() {
     checkedTheme.closest('.toggle-option').classList.add('active');
   }
 });
-
 
