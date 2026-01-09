@@ -162,4 +162,75 @@ document.addEventListener('DOMContentLoaded', function() {
     checkedTheme.closest('.toggle-option').classList.add('active');
   }
 });
+// Secret section reveal with strong scroll gesture
+
+(function() {
+  // Selectors for the "final" block and the secret section
+  var finalBlock = document.querySelector('.final:last-of-type');
+  var secretSection = document.querySelector('.secret-section');
+  if (!finalBlock || !secretSection) return;
+
+  // State tracking
+  var secretRevealed = false;
+  var resistanceCounter = 0;
+  var RESISTANCE_THRESHOLD = 2; // Number of strong scrolls required
+  var STRONG_SCROLL_DELTA = 80; // px threshold for "strong" wheel gesture
+
+  // Hide secret section initially, if not already
+  secretSection.style.display = 'none';
+
+  // Helper: check if user at (or very near) bottom of main content
+  function isAtFinalBlock() {
+    var rect = finalBlock.getBoundingClientRect();
+    // When bottom of .final is visible at the bottom of viewport or just above
+    return rect.bottom - window.innerHeight < 50;
+  }
+
+  // Handler for "wheel" event
+  function onWheel(e) {
+    if (secretRevealed) return;
+    if (!isAtFinalBlock()) {
+      resistanceCounter = 0;
+      return;
+    }
+
+    // Only act on strong downward scrolls
+    if (e.deltaY > STRONG_SCROLL_DELTA) {
+      resistanceCounter++;
+    } else if (e.deltaY < -STRONG_SCROLL_DELTA) {
+      // If user scrolls up strong, reset counter
+      resistanceCounter = 0;
+      return;
+    }
+
+    if (resistanceCounter >= RESISTANCE_THRESHOLD) {
+      revealSecretSection();
+    }
+  }
+
+  function revealSecretSection() {
+    secretRevealed = true;
+    // Show the section (will be full screen block)
+    secretSection.style.display = 'flex';
+    // Optionally, scroll smoothly to it
+    secretSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Listen for wheel events globally
+  window.addEventListener('wheel', onWheel, { passive: false });
+
+  // Optional: If user scrolls back up to main, hide the secret section again.
+  // Uncomment below if you want to let user "go back".
+  /*
+  window.addEventListener('scroll', function() {
+    if (!secretRevealed) return;
+    var rect = finalBlock.getBoundingClientRect();
+    if (rect.bottom - window.innerHeight > 60) {
+      secretSection.style.display = 'none';
+      secretRevealed = false;
+      resistanceCounter = 0;
+    }
+  });
+  */
+})();
 
