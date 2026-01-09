@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkedTheme.closest('.toggle-option').classList.add('active');
   }
 });
-// Secret section reveal with strong scroll gesture
+// Secret section reveal with strong scroll gesture or swipe-up gesture (mobile support)
 
 (function() {
   // Selectors for the "final" block and the secret section
@@ -173,8 +173,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // State tracking
   var secretRevealed = false;
   var resistanceCounter = 0;
-  var RESISTANCE_THRESHOLD = 2; // Number of strong scrolls required
-  var STRONG_SCROLL_DELTA = 80; // px threshold for "strong" wheel gesture
+  var RESISTANCE_THRESHOLD = 2; // Number of strong gestures required
+  var STRONG_SCROLL_DELTA = 80; // px for wheel events
+  var STRONG_TOUCH_DELTA = 60; // px for vertical swipe
 
   // Hide secret section initially, if not already
   secretSection.style.display = 'none';
@@ -208,6 +209,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Touch support for mobile: Detect strong upward swipe when at bottom
+  var touchStartY = null;
+  var touchTracking = false;
+
+  function onTouchStart(e) {
+    if (secretRevealed) return;
+    if (!isAtFinalBlock()) {
+      resistanceCounter = 0;
+      touchTracking = false;
+      return;
+    }
+    // Only care about single-finger touches
+    if (e.touches && e.touches.length === 1) {
+      touchStartY = e.touches[0].clientY;
+      touchTracking = true;
+    } else {
+      touchTracking = false;
+    }
+  }
+
+  function onTouchMove(e) {
+    if (!touchTracking || secretRevealed) return;
+    if (!isAtFinalBlock()) {
+      resistanceCounter = 0;
+      touchTracking = false;
+      return;
+    }
+    if (e.touches && e.touches.length === 1 && touchStartY !== null) {
+      var currentY = e.touches[0].clientY;
+      var deltaY = touchStartY - currentY; // swipe up: positive
+      if (deltaY > STRONG_TOUCH_DELTA) {
+        resistanceCounter++;
+        touchStartY = currentY; // so a long swipe doesn't count as multiple
+        if (resistanceCounter >= RESISTANCE_THRESHOLD) {
+          revealSecretSection();
+          touchTracking = false;
+        }
+      } else if (deltaY < -STRONG_TOUCH_DELTA) {
+        // Strong downward, reset
+        resistanceCounter = 0;
+        touchTracking = false;
+      }
+    }
+  }
+
+  function onTouchEnd(e) {
+    // Reset touch tracking if finger lifts in the middle
+    touchTracking = false;
+    touchStartY = null;
+  }
+
   function revealSecretSection() {
     secretRevealed = true;
     // Show the section (will be full screen block)
@@ -216,8 +268,12 @@ document.addEventListener('DOMContentLoaded', function() {
     secretSection.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Listen for wheel events globally
+  // Listen for wheel events globally (desktop)
   window.addEventListener('wheel', onWheel, { passive: false });
+  // Listen for touch events (mobile)
+  window.addEventListener('touchstart', onTouchStart, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: true });
+  window.addEventListener('touchend', onTouchEnd, { passive: true });
 
   // Optional: If user scrolls back up to main, hide the secret section again.
   // Uncomment below if you want to let user "go back".
