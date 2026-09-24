@@ -647,3 +647,41 @@ main {
     }
 }
 
+
+.promo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    background: var(--main);
+    border-radius: 18px;
+    box-sizing: border-box;
+}
+
+.promo-img {
+    width: 72px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+}
+
+.promo-title {
+    flex: 1;
+    color: var(--color-white);
+    font-size: var(--font-m-size);
+    line-height: var(--font-m-line-height);
+}
+
+.promo-button {
+    flex-shrink: 0;
+    padding: 10px 24px;
+}
+
+@media (max-width: 400px) {
+    .promo {
+        flex-wrap: wrap;
+    }
+    .promo-button {
+        width: 100%;
+    }
+}
