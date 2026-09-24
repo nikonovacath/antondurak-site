@@ -147,6 +147,7 @@ p {
     gap: 8px;
 }
 .block-1 {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -667,6 +668,7 @@ main {
 
 .promo-title {
     flex: 1;
+    min-width: 0;
     color: var(--color-white);
     font-size: var(--font-m-size);
     line-height: var(--font-m-line-height);
@@ -677,7 +679,7 @@ main {
     padding: 10px 24px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 620px) {
     .promo {
         flex-wrap: wrap;
     }
